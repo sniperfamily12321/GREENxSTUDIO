@@ -17,10 +17,12 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "composite": true,
     "paths": {
       "*": ["*"]
     }
   },
   "include": ["types.ts", "constants.ts", "App.tsx", "index.tsx", "components/**/*.tsx", "pages/**/*.tsx"],
-  "exclude": ["node_modules", "dist", "vite.config.ts", "tsconfig.node.json"]
+  "exclude": ["node_modules", "dist", "vite.config.ts", "tsconfig.node.json"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
