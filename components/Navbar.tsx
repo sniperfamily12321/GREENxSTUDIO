@@ -4,26 +4,33 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { PROFILE } from '../constants.ts';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  isDiscounted?: boolean;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ isDiscounted }) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
-    { name: 'Home', path: '/' },
+    { name: 'Home', path: isDiscounted ? '/jryc7' : '/' },
     { name: 'Services', path: '/services' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === '/' && location.pathname === '/jryc7') return true;
+    return location.pathname === path;
+  };
 
   return (
-    <nav className="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <nav className={`fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 ${isDiscounted ? 'top-8' : 'top-0'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold tracking-tight text-white">
+            <Link to={isDiscounted ? "/jryc7" : "/"} className="text-2xl font-bold tracking-tight text-white">
               {PROFILE.name.toUpperCase()}
             </Link>
           </div>

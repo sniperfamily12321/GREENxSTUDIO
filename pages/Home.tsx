@@ -1,15 +1,25 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Layout, MessageSquare } from 'lucide-react';
+import { Shield, Layout, MessageSquare, Gift } from 'lucide-react';
 import { PROFILE } from '../constants.ts';
 
-const Home: React.FC = () => {
+interface HomeProps {
+  isPromo?: boolean;
+}
+
+const Home: React.FC<HomeProps> = ({ isPromo }) => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          {isPromo && (
+            <div className="inline-flex items-center px-4 py-2 bg-white/10 border border-white/20 rounded-full mb-8 backdrop-blur-sm animate-bounce">
+              <Gift className="w-4 h-4 text-white mr-2" />
+              <span className="text-white text-[10px] font-bold uppercase tracking-widest">Special 15% Discount Activated</span>
+            </div>
+          )}
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
             Professional Discord Server and <br className="hidden md:block" /> Bot Development Services
           </h1>

@@ -1,17 +1,32 @@
 
 import React, { useState } from 'react';
-import { Check, Loader2 } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { Check, Loader2, Gift } from 'lucide-react';
 import { PRICING_PLANS, PROFILE } from '../constants.ts';
 
-const Pricing: React.FC = () => {
-  const [loadingPlanId, setLoadingPlanId] = useState<string | null>(null);
+interface PricingProps {
+  isPromo?: boolean;
+}
 
-  const handlePurchase = (planId: string, planName: string, price: number) => {
+const Pricing: React.FC<PricingProps> = ({ isPromo }) => {
+  const [loadingPlanId, setLoadingPlanId] = useState<string | null>(null);
+  const location = useLocation();
+  
+  // Also check if the current path is /jryc7 in case the prop isn't passed
+  const activePromo = isPromo || location.pathname === '/jryc7';
+
+  const calculateDiscount = (price: number) => {
+    if (!activePromo) return price;
+    return Math.floor(price * 0.85); // 15% discount
+  };
+
+  const handlePurchase = (planId: string, planName: string, originalPrice: number) => {
     setLoadingPlanId(planId);
+    const finalPrice = calculateDiscount(originalPrice);
     
-    // 1 second delay to showcase the visual feedback and provide a premium feel
     setTimeout(() => {
-      const message = `Hello ${PROFILE.name},\nI want to purchase the ${planName} – ₹${price}.\nPlease share the next steps.`;
+      const promoText = activePromo ? ` using special code JRYC7 (15% OFF applied)` : '';
+      const message = `Hello ${PROFILE.name},\nI want to purchase the ${planName} – ₹${finalPrice}${promoText}.\nPlease share the next steps.`;
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/${PROFILE.whatsappNumber}?text=${encodedMessage}`, '_blank');
       setLoadingPlanId(null);
@@ -21,7 +36,9 @@ const Pricing: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <div className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 uppercase tracking-tighter">Pricing Plans</h2>
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 uppercase tracking-tighter">
+          Pricing Plans {activePromo && <span className="text-white/40">(PROMO ACTIVE)</span>}
+        </h2>
         <p className="text-slate-400 max-w-xl mx-auto">Select the plan that best fits your community needs. Professional quality guaranteed across all tiers.</p>
         <div className="h-1 w-20 bg-white mx-auto mt-6"></div>
       </div>
@@ -30,6 +47,7 @@ const Pricing: React.FC = () => {
         {PRICING_PLANS.map((plan) => {
           const isPopular = plan.id === 'starter';
           const isLoading = loadingPlanId === plan.id;
+          const discountedPrice = calculateDiscount(plan.price);
 
           return (
             <div 
@@ -40,10 +58,19 @@ const Pricing: React.FC = () => {
                   : 'border-slate-800 bg-slate-900/30 hover:border-slate-600'
               } rounded-sm`}
             >
-              {isPopular && (
-                <span className="absolute top-0 right-8 transform translate-y-[-50%] bg-white text-slate-950 px-4 py-1 text-[10px] font-black uppercase tracking-widest shadow-2xl">
-                  Most Popular
-                </span>
+              {(isPopular || activePromo) && (
+                <div className="absolute top-0 right-8 transform translate-y-[-50%] flex space-x-2">
+                  {activePromo && (
+                    <span className="bg-white text-slate-950 px-3 py-1 text-[9px] font-black uppercase tracking-widest shadow-2xl flex items-center">
+                      <Gift className="w-3 h-3 mr-1" /> 15% OFF
+                    </span>
+                  )}
+                  {isPopular && (
+                    <span className="bg-slate-800 text-white px-3 py-1 text-[9px] font-black uppercase tracking-widest shadow-2xl">
+                      Most Popular
+                    </span>
+                  )}
+                </div>
               )}
               
               <div className="mb-8">
@@ -51,7 +78,12 @@ const Pricing: React.FC = () => {
                   {plan.name}
                 </h3>
                 <div className="flex items-baseline text-white">
-                  <span className="text-4xl font-bold tracking-tight">₹{plan.price}</span>
+                  <div className="flex flex-col">
+                    {activePromo && (
+                      <span className="text-slate-500 text-sm line-through decoration-slate-600 mb-[-4px]">₹{plan.price}</span>
+                    )}
+                    <span className="text-4xl font-bold tracking-tight">₹{discountedPrice}</span>
+                  </div>
                   <span className="ml-1 text-slate-500 text-sm">one-time</span>
                 </div>
               </div>
@@ -77,13 +109,13 @@ const Pricing: React.FC = () => {
                 } ${isLoading ? 'shimmer' : ''}`}
               >
                 <span className={`flex items-center justify-center transition-all duration-300 ${isLoading ? 'opacity-0 scale-90 translate-y-4' : 'opacity-100 scale-100 translate-y-0'}`}>
-                  Get This Plan
+                  Claim Discount
                 </span>
                 
                 {isLoading && (
                   <div className="absolute inset-0 flex items-center justify-center animate-in fade-in zoom-in duration-300 bg-inherit">
                     <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                    <span className="text-[10px] tracking-widest font-bold">Connecting...</span>
+                    <span className="text-[10px] tracking-widest font-bold">Applying Code...</span>
                   </div>
                 )}
               </button>
@@ -98,7 +130,7 @@ const Pricing: React.FC = () => {
           If you need a specific solution not covered by these plans, reach out for a custom quote tailored to your vision.
         </p>
         <a 
-          href={`https://wa.me/${PROFILE.whatsappNumber}?text=${encodeURIComponent(`Hello ${PROFILE.name}, I have a custom requirement for a Discord server/bot.`)}`}
+          href={`https://wa.me/${PROFILE.whatsappNumber}?text=${encodeURIComponent(`Hello ${PROFILE.name}, I have a custom requirement for a Discord server/bot.${activePromo ? ' I have the promo code JRYC7.' : ''}`)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center px-10 py-4 bg-slate-800 text-white font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-slate-950 transition-all active:scale-95"
