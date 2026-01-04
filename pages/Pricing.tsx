@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Check, Loader2, Gift, ChevronDown, ChevronUp } from 'lucide-react';
-import { PRICING_PLANS, PROFILE, FAQS } from '../constants.ts';
+// Corrected local import by removing the file extension
+import { PRICING_PLANS, PROFILE, FAQS } from '../constants';
 
 interface PricingProps {
   isPromo?: boolean;
@@ -13,11 +14,13 @@ const Pricing: React.FC<PricingProps> = ({ isPromo }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const location = useLocation();
   
-  const activePromo = isPromo || location.pathname === '/jryc7';
+  // Use session promo or direct prop
+  const activePromo = isPromo || sessionStorage.getItem('promo_active') === 'true';
 
   const calculateDiscount = (price: number) => {
     if (!activePromo) return price;
-    return Math.floor(price * 0.85);
+    // 20% discount calculation
+    return Math.floor(price * 0.80);
   };
 
   const handlePurchase = (planId: string, planName: string, originalPrice: number) => {
@@ -25,7 +28,7 @@ const Pricing: React.FC<PricingProps> = ({ isPromo }) => {
     const finalPrice = calculateDiscount(originalPrice);
     
     setTimeout(() => {
-      const promoText = activePromo ? ` using special code JRYC7 (15% OFF applied)` : '';
+      const promoText = activePromo ? ` using special code JRYC7 (20% OFF applied)` : '';
       const message = `Hello ${PROFILE.name},\nI want to purchase the ${planName} – ₹${finalPrice}${promoText}.\nPlease share the next steps.`;
       const encodedMessage = encodeURIComponent(message);
       window.open(`https://wa.me/${PROFILE.whatsappNumber}?text=${encodedMessage}`, '_blank');
@@ -64,7 +67,7 @@ const Pricing: React.FC<PricingProps> = ({ isPromo }) => {
                 <div className="absolute top-0 right-10 transform translate-y-[-50%] flex space-x-2">
                   {activePromo && (
                     <span className="bg-white text-slate-950 px-3 py-1.5 text-[9px] font-black uppercase tracking-widest shadow-2xl flex items-center">
-                      <Gift className="w-3 h-3 mr-1" /> 15% OFF
+                      <Gift className="w-3 h-3 mr-1" /> 20% OFF
                     </span>
                   )}
                   {isPopular && (

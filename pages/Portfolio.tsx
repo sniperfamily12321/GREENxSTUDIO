@@ -1,8 +1,8 @@
 
 import React from 'react';
-// Added missing Link import from react-router-dom
 import { Link } from 'react-router-dom';
-import { PROJECTS } from '../constants.ts';
+// Removed .ts extension from local import to prevent resolution failures during compilation
+import { PROJECTS } from '../constants';
 import { ExternalLink, CheckCircle, Activity, ShieldCheck, Zap } from 'lucide-react';
 
 const statusIcons: Record<string, React.ReactNode> = {

@@ -1,5 +1,6 @@
 
-import { PricingPlan, Service, Project, FAQ } from './types.ts';
+// Removed .ts extension from local import to resolve potential TypeScript/Vite import issues
+import { PricingPlan, Service, Project, FAQ } from './types';
 
 export const PROFILE = {
   name: 'GREENxSTUDIO',

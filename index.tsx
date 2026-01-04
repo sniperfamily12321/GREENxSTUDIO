@@ -2,7 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
-import App from './App.tsx';
+// Removed .tsx extension from local import to follow Vite/ESM best practices and fix potential module resolution errors
+import App from './App';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

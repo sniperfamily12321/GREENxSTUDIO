@@ -30,7 +30,7 @@ const Home: React.FC<HomeProps> = ({ isPromo }) => {
             <div className="inline-flex items-center gap-3 p-1 pr-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full mb-8 shadow-2xl animate-fade-in">
               <div className="bg-white text-slate-950 px-3 py-1 rounded-full flex items-center gap-1.5">
                 <Gift className="w-3.5 h-3.5" />
-                <span className="text-[10px] font-black uppercase tracking-widest">15% Discount</span>
+                <span className="text-[10px] font-black uppercase tracking-widest">20% Discount</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-[10px] font-black uppercase tracking-widest text-white/80">Code: JRYC7</span>
@@ -156,7 +156,6 @@ const Home: React.FC<HomeProps> = ({ isPromo }) => {
       <section className="py-32 bg-slate-900/10 border-t border-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-             <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-500 mb-4">Client Consensus</h3>
              <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter">The Industry Gold Standard</h2>
           </div>
           

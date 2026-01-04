@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
-import { PROFILE } from '../constants.ts';
+// Cleaned up import path by removing extension
+import { PROFILE } from '../constants';
 
 interface NavbarProps {
   isDiscounted?: boolean;

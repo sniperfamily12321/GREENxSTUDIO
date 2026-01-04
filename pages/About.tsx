@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PROFILE } from '../constants.ts';
+// Cleaned up local import extension to satisfy build tools and compiler
+import { PROFILE } from '../constants';
 import { Target, Zap, ShieldCheck, Heart } from 'lucide-react';
 
 const About: React.FC = () => {
@@ -62,7 +63,6 @@ const About: React.FC = () => {
       
       <div className="mt-32 p-16 bg-slate-950 border border-slate-900 text-center">
          <p className="text-slate-500 text-xs font-black uppercase tracking-[0.5em] mb-8">Ready to start?</p>
-         {/* Added import for Link from react-router-dom */}
          <Link to="/contact" className="text-2xl md:text-4xl font-black text-white hover:text-slate-400 transition-all uppercase tracking-tighter underline underline-offset-8">Let's build together →</Link>
       </div>
     </div>
