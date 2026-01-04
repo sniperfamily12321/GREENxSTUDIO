@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { MessageCircle, ExternalLink } from 'lucide-react';
-import { PROFILE } from '../constants';
+import { PROFILE } from '../constants.ts';
 
 const Contact: React.FC = () => {
   return (
