@@ -1,5 +1,5 @@
 
-import { PricingPlan, Service } from './types';
+import { PricingPlan, Service } from './types.ts';
 
 export const PROFILE = {
   name: 'GREENxSTUDIO',

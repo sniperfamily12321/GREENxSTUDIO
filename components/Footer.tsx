@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PROFILE } from '../constants';
+import { PROFILE } from '../constants.ts';
 
 const Footer: React.FC = () => {
   return (

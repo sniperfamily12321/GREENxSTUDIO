@@ -1,13 +1,13 @@
 
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Services from './pages/Services';
-import Pricing from './pages/Pricing';
-import About from './pages/About';
-import Contact from './pages/Contact';
+import Navbar from './components/Navbar.tsx';
+import Footer from './components/Footer.tsx';
+import Home from './pages/Home.tsx';
+import Services from './pages/Services.tsx';
+import Pricing from './pages/Pricing.tsx';
+import About from './pages/About.tsx';
+import Contact from './pages/Contact.tsx';
 
 const App: React.FC = () => {
   return (

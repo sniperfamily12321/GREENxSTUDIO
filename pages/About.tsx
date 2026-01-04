@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PROFILE } from '../constants';
+import { PROFILE } from '../constants.ts';
 
 const About: React.FC = () => {
   return (
@@ -33,15 +33,3 @@ const About: React.FC = () => {
         </div>
         <div>
           <h4 className="text-white font-bold text-2xl mb-1 tracking-tight">24/7</h4>
-          <p className="text-slate-500 text-xs uppercase tracking-widest">Tech Support</p>
-        </div>
-        <div>
-          <h4 className="text-white font-bold text-2xl mb-1 tracking-tight">3+</h4>
-          <p className="text-slate-500 text-xs uppercase tracking-widest">Years Experience</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default About;

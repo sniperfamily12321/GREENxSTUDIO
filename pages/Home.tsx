@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Layout, MessageSquare } from 'lucide-react';
-import { PROFILE } from '../constants';
+import { PROFILE } from '../constants.ts';
 
 const Home: React.FC = () => {
   return (

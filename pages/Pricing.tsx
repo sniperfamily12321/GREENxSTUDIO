@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Check, Loader2 } from 'lucide-react';
-import { PRICING_PLANS, PROFILE } from '../constants';
+import { PRICING_PLANS, PROFILE } from '../constants.ts';
 
 const Pricing: React.FC = () => {
   const [loadingPlanId, setLoadingPlanId] = useState<string | null>(null);

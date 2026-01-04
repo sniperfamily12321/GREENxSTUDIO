@@ -10,7 +10,7 @@ import {
   Briefcase,
   Loader2
 } from 'lucide-react';
-import { SERVICES, PROFILE } from '../constants';
+import { SERVICES, PROFILE } from '../constants.ts';
 
 const serviceIcons: Record<string, React.ReactNode> = {
   setup: <Settings className="w-6 h-6" />,
