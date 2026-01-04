@@ -1,5 +1,5 @@
 
-import { PricingPlan, Service } from './types.ts';
+import { PricingPlan, Service, Project, FAQ } from './types.ts';
 
 export const PROFILE = {
   name: 'GREENxSTUDIO',
@@ -88,5 +88,51 @@ export const PRICING_PLANS: PricingPlan[] = [
       'Logs and reports',
       'Server performance optimization'
     ]
+  }
+];
+
+export const PROJECTS: Project[] = [
+  {
+    id: '1',
+    title: 'Elite Gaming Community',
+    category: 'Gaming',
+    description: 'A massive 10k+ member gaming hub with automated matchmaking systems.',
+    features: ['Custom Economy Bot', 'Ranked Matchmaking', 'Tournament System'],
+    status: 'Completed'
+  },
+  {
+    id: '2',
+    title: 'CryptoWhale NFT Hub',
+    category: 'Crypto',
+    description: 'High-security server for NFT holders with wallet verification integration.',
+    features: ['Holder Verification', 'Floor Price Tracking', 'Secure Trading Rooms'],
+    status: 'Completed'
+  },
+  {
+    id: '3',
+    title: 'Zenith RP Server',
+    category: 'Roleplay',
+    description: 'Advanced GTA V roleplay community backend and bot management.',
+    features: ['Whitelisting Bot', 'Staff Management', 'IC/OOC Logs'],
+    status: 'Completed'
+  }
+];
+
+export const FAQS: FAQ[] = [
+  {
+    question: "How long does a server setup take?",
+    answer: "Most setups are completed within 24-48 hours depending on the complexity of the plan chosen."
+  },
+  {
+    question: "Do I get lifetime support?",
+    answer: "We provide 30 days of complimentary technical support for all packs. Extended management plans are available for long-term needs."
+  },
+  {
+    question: "Can you customize existing servers?",
+    answer: "Yes, we can overhaul and optimize your current server without losing your existing member base."
+  },
+  {
+    question: "Are custom bots included?",
+    answer: "Custom bot development is included in the Growth Max plan. For Micro and Starter, we configure industry-leading public bots."
   }
 ];

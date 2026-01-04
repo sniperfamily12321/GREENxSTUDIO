@@ -11,3 +11,17 @@ export interface Service {
   title: string;
   description: string;
 }
+
+export interface Project {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  features: string[];
+  status: 'Completed' | 'Active';
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
